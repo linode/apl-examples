@@ -1,0 +1,20 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: annotate-nodes  
+spec:
+  rules:
+  - name: kwasm-annotate-nodes
+    match:
+      any:
+      - resources:
+          kinds:
+          - Node
+          selector:
+            matchLabels:
+              lke.linode.com/pool-id: 542353
+    mutate:
+      patchStrategicMerge:
+        metadata:
+          annotations:
+            kwasm.sh/kwasm-node: true
