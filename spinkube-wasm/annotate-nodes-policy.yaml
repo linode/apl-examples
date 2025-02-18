@@ -6,15 +6,20 @@ spec:
   rules:
   - name: kwasm-annotate-nodes
     match:
-      any:
-      - resources:
-          kinds:
+      resources:
+        kinds:
           - Node
-          selector:
-            matchLabels:
-              lke.linode.com/pool-id: 542353
+        selector:
+          matchLabels:
+            lke.linode.com/pool-id: "xxxxxx"
+        operations:
+          - UPDATE
     mutate:
+      targets:
+      - apiVersion: v1
+        kind: Node
+        name: "{{request.object.metadata.name}}"
       patchStrategicMerge:
         metadata:
           annotations:
-            kwasm.sh/kwasm-node: true
+            kwasm.sh/kwasm-node: "true"

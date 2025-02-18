@@ -2,18 +2,13 @@
 
 ## install the Kwasm operator
 
-Clone:
+Add the Kwasn Helm chart to the Catalog:
 
 - repo: https://github.com/KWasm/kwasm-operator
 - path: charts/kwasm-operator
 - revision: kwasm-operator-chart-0.2.3
 
-```yaml
-kwasmOperator:
-  installerImage: ghcr.io/spinkube/containerd-shim-spin/node-installer:v0.18.0
-```
-
-add the following to the `clusterrole.yaml` template:
+Go to the charts repo and add the following to the `clusterrole.yaml` template in the kwasm-operator chart:
 
 ```yaml
   - verbs:
@@ -22,6 +17,18 @@ add the following to the `clusterrole.yaml` template:
       - coordination.k8s.io
     resources:
       - leases
+```
+
+Create a workload in the `team-admin`
+
+- Name: kwasm-operator
+- Namespace: kwasm-operator
+- Select `Create namespace`
+- Values:
+
+```yaml
+kwasmOperator:
+  installerImage: ghcr.io/spinkube/containerd-shim-spin/node-installer:v0.18.0
 ```
 
 ## Annotate the nodes
@@ -54,10 +61,17 @@ Add to the `team-team-spinkube` repo: https://github.com/spinkube/spin-operator/
 
 ## Install spin operator
 
-Clone:
+Add the Spin Operator Helm chart to the Catalog:
 
 - repo: https://github.com/spinframework/spin-operator
 - revision: v0.4.0
+
+Create a workload in the `team-admin`
+
+- Name: spin-operator
+- Namespace: spin-operator
+- Select `Create namespace`
+- Values:
 
 ```yaml
 version: "0.4.0"
@@ -65,12 +79,10 @@ version: "0.4.0"
 
 ## Create a spin app
 
-add the following files to the `team-spinkube-argocd` repo: https://github.com/spinkube/spin-operator/releases/download/v0.4.0/spin-operator.shim-executor.yaml
+Add the following files to the `team-spinkube-argocd` repo: https://github.com/spinkube/spin-operator/releases/download/v0.4.0/spin-operator.shim-executor.yaml
 
 
 ## Expose the service
-
-Expose the service and add a URL path `/hello`
 
 ## Login to the private registry
 
@@ -81,3 +93,10 @@ spin registry login -u 'xx' -p xxx harbor.labs.try-apl.net
 ## TO-DO
 
 - network policies (now netpols for team have been disabled)
+- solve `clusterpolicy` issue to annotate nodes:
+
+```
+one or more objects failed to apply, reason: error when patching "/dev/shm/2763883015": admission webhook "validate-policy.kyverno.svc" denied the request: path: spec.rules[0].mutate.targets.: auth check fails, additional privileges are required for the service account 'system:serviceaccount:kyverno:kyverno-background-controller': cannot update/v1/Node in namespace
+```
+
+- test `URL Path` in service for the mapping to `/hello` and `/go-hello`
