@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Demo App</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="icon" href="/static/img/favicon.ico">
+        <link href="/static/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+            </div>
+            <h1>RabbitMQ Chat Demo App</h1>
+        </header>
+
+        <main class="main">
+            <div class="content">
+                <h2>Send messages</h2>
+                <form action="" onsubmit="sendMessage(event)">
+                    <input type="text" id="messageText" autocomplete="off"/>
+                    <button>Send</button>
+                </form>
+                <h2>Received messages</h2>
+                <ul id='messages'>
+                </ul>
+            </div>
+        </main>
+
+        <script src="/static/script.js"></script>
+    </body>
+</html>

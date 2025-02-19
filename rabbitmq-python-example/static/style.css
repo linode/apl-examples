@@ -1,0 +1,57 @@
+body {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  color: rgb(105, 105, 112);
+}
+
+header {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h2 {
+  font-size: 0.875rem;
+}
+
+button {
+  color: rgb(255, 255, 255);
+  background-color: rgb(1, 116, 188);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 2px 20px;
+  border: medium;
+  border-radius: 1px;
+  min-height: 34px;
+  min-width: 105px;
+}
+
+input {
+  box-sizing: border-box;
+  font-size: 0.9rem;
+  padding: 8px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 12px 0px 24px;
+}
+
+.content {
+  padding: 24px;
+  max-width: 1080px;
+  width: 50%;
+}
+
+.logo {
+  background-image: url('/static/img/akamai-logo-color.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 200px;
+  height: 100px;
+  margin: auto;
+}
