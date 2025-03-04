@@ -1,0 +1,37 @@
+## Teams in App Platform by default are isolated using ingress and egress network policies
+## Network policies are applied based on Pod labels.
+## The open-webui Helm chart does not allow to add extra Labels to pods.
+## This Policy adds the sidecar.istio.io/inject: "false" label/value
+## This excludes the open-web-ui from the egress isolation when using openai models
+## Openai models use random ports and allowing this is not supported by the Istio ServiceEntry
+
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: open-webui-disable-istio-sidecar
+  annotations:
+    policies.kyverno.io/title: Add Labels
+    policies.kyverno.io/minversion: 1.6.0
+    kyverno.io/kyverno-version: 1.6.0
+    policies.kyverno.io/subject: Pod     
+spec:
+spec:
+  rules:
+  - name: open-webui-disable-sidecar-injection
+    match:
+      any:
+      - resources:
+          kinds:
+          - StatefulSet
+          - Deployment
+          selector:
+            matchLabels:
+              ## change the value to the name of the Workload
+              app.kubernetes.io/instance: "open-webui"
+    mutate:
+      patchStrategicMerge:
+        spec:
+          template:
+            metadata:
+              labels:
+                sidecar.istio.io/inject: "false"

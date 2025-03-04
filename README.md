@@ -1,143 +1,21 @@
-# apl-example-app
+## About
 
-This repo contains the source code to build the `vote`, `worker` and `results` images for deploying the the `APL Example App` - based on the [Example Voting App](https://github.com/dockersamples/example-voting-app) - using the provided quickstart Helm charts in the APL Catalog.
+This repository contains example code used for App Platform for LKE [Cloud Guides & Tutorials](https://www.linode.com/docs/guides/kubernetes/) and App Platform for LKE [Labs](https://apl-docs.net/docs/get-started/labs/overview).
 
-<img title="Voting App" alt="App diagram" src="Voting App.jpg">
+## Contents
 
-# Get started
+## kserve-ai-inferencing
 
-## Building the images
+A Helm chart to create a Kserve `inferenceService`.
 
-Use the [Build feature in Otomi](https://otomi.io/docs/get-started/labs/lab-6#build-the-blue-image) to build the images with `Docker` mode for the `result`,`vote` and `worker` components: 
-1. Set the build name (ex. `voting-app-vote`)
-2. Set the `Repo URL` to `https://github.com/redkubes/example-voting-app.git`
-3. Set the `path` to `./vote/Dockerfile` 
-4. Repeat step 1,2 and 3 for the other 2 components
-    - use `./result/Dockerfile` and `./worker/Dockerfile` paths respectively
+## open-webui
 
+A Kverno `Policy` to disable Istio sidecar injection.
 
-## Create a Redis cluster and a PostgreSQL database
+## rabbitmq-python-example
 
-Use the `postgresql` and the `redis` charts in the APL `Catalog` to create a Redis master-replica cluster and a PostgreSQL database. 
-- **Postgresql**:
-  - Name: `<postgesql app name>` (E.g.`voting-app-psql`).
-  - Click `Submit` (can use default values for this example)
-- **Redis**:
-  - Name: `<redis app name>` (E.g.`voting-app-redis`).
-  - For this demo, Redis authentication needs to be turned off by setting 
-      ```yaml
-    auth:
-      enabled: false
-    ```
-    in the chart `Values` editor.
-  - Click `Submit` and then `Deploy`
-## Deploy the Vote app
+Source code for a chat app, sending messages to all clients that are currently connected.
 
-Use the `k8s-deployment` chart to deploy the vote app. Use the following values:
+## vote-app
 
-- Name: `voting-app-vote`
-- Update Values:
-  ```yaml
-  containerPorts:
-    - name: http
-      containerPort: 80
-      protocol: TCP
-  env:
-    - name: REDIS_HOST
-      value: <redis-cluster-name>-master # E.g. voting-app-redis-master
-  ```
-- Click `Submit`
-
-## Deploy the Worker app
-
-Use the `k8s-deployment` chart to deploy the worker app. Use the following values:
-
-- Name: `voting-app-worker`
-- Update Values:
-  ```yaml
-  containerPorts:
-    - name: http
-      containerPort: 80
-      protocol: TCP
-  env:
-    - name: DATABASE_USER
-      valueFrom:
-        secretKeyRef:
-          name: <psql-cluster-name>-superuser # E.g. voting-app-psql-superuser
-          key: username
-    - name: DATABASE_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: <psql-cluster-name>-superuser # E.g. voting-app-psql-superuser
-          key: password
-    - name: REDIS_HOST
-      value: <redis-cluster-name>-master      # E.g. voting-app-redis-master
-    - name: DATABASE_HOST
-      value: <psql-cluster-name>-rw           # E.g. voting-app-psql-rw
-  ```
-- Click `Submit`
-
-## Deploy the Result app
-
-Use the `k8s-deployment` chart to deploy the result app. Use the following values:
-
-- Name: `voting-app-result`
-- Update Values:
-  ```yaml
-  containerPorts:
-    - name: http
-      containerPort: 80
-      protocol: TCP
-  env:
-    - name: DATABASE_USER
-      valueFrom:
-        secretKeyRef:
-          name: <psql-cluster-name>-superuser # E.g. voting-app-psql-superuser
-          key: username
-    - name: DATABASE_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: <psql-cluster-name>-superuser # E.g. voting-app-psql-superuser
-          key: password
-    - name: DATABASE_HOST
-      value: <psql-cluster-name>-rw           # E.g. voting-app-psql-rw
-  ```
-- Click `Submit` and then `Deploy`
-
-## Register the services
-
-Register the `vote` and `result` services in APL and configure them for external exposure. 
-
-### Vote
-
-- Register the `vote` service 
-- Set exposure to `External`
-- Click `Submit`
-
-### Result
-
-- Register the `result` service 
-- Set exposure to `External`
-- Click `Submit` and then `Deploy`
-
-## Network Policies
-
-If `Network policies` are enabled, then register all services and configure the network policies:
-
-### Postgres Database
-- Create a new Netpol and select the ingress rule type
-- Add the selector label name `otomi.io/app`
-- Add the selector label value `<postgres-workload-name>` (E.g. `voting-app-psql`)
-- Select AllowOnly
-- Add the namespace `<team-name>` (E.g. `team-demo`), the selector label name `otomi.io/app` and the selector label value `<worker>` (E.g. `voting-app-worker`)
-- Add the namespace `<team-name>` (E.g. `team-demo`), the selector label name `otomi.io/app` and the selector label value `<result>` (E.g. `voting-app-result`)
-- Click `Submit`
-
-### Redis
-- Create a new network policy and select the ingress rule type
-- Add the selector label name `otomi.io/app`
-- Add the selector label value `<redis-workload-name>` (E.g. `voting-app-redis`)
-- Select AllowOnly
-- Add the namespace `<team-name>` (E.g. `team-demo`), the selector label name `otomi.io/app` and the selector label value `<worker>` (E.g. `voting-app-worker`)
-- Add the namespace `<team-name>` (E.g. `team-demo`), the selector label name `otomi.io/app` and the selector label value `<vote>` (E.g. `voting-app-vote`)
-- Click `Submit` and then `Deploy`
+Source code to build the `vote`, `worker` and `results` images based on the [Example Voting App](https://github.com/dockersamples/example-voting-app).
