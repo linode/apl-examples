@@ -60,7 +60,7 @@ env:
   - name: NOTIFIER_RABBITMQ_HOST
     valueFrom:
       secretKeyRef:
-        name: rabbitmq-example-cluster-default-user
+        name: example-rabbitmq-cluster-default-user
         key: host
   - name: NOTIFIER_RABBITMQ_USER
     valueFrom:
