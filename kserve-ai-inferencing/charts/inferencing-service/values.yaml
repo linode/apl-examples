@@ -1,6 +1,7 @@
 fullnameOverride: ""
 
-labels: {}
+labels:
+  sidecar.istio.io/inject: "false"
 
 annotations: {}
 
@@ -13,20 +14,20 @@ env:
         key: HF_TOKEN
         optional: false
 
-args:
+args: []
 ## Use the model_id of the KServe Hugging Face runtime to serve text generation 
 ## and text2text generation LLM models for faster time-to-first-token (TTFT) and 
 ## higher token generation throughput than the Hugging Face API.
-  - --model_id=meta-llama/meta-llama-3-8b-instruct
+  # - --model_id=meta-llama/meta-llama-3-8b-instruct
   # - --model_id=deepseek-ai/deepseek-coder-7b-instruct-v1.5
 
 resources:
   limits:
-    cpu: "6"
+    cpu: "12"
     memory: 24Gi
     nvidia.com/gpu: "1"
   requests:
-    cpu: "6"
+    cpu: "12"
     memory: 24Gi
     nvidia.com/gpu: "1"
 
