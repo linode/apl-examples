@@ -78,7 +78,7 @@ env:
 
 1. Go to `Network Policies`, select `Create Netpol`.
 2. Provide any name for the policy, e.g. `rabbitmq-example`.
-3. Rule type is `ingress`. Set the selector name `otomi.io/app` and value `rabbitmq-example-cluster`, where applicable
+3. Rule type is `ingress`. Set the selector name `otomi.io/app` and value `example-rabbitmq-cluster`, where applicable
    replacing `example` with the name you chose for the RabbitMQ instance.
 4. Set mode to `AllowOnly`.
 5. Set the namespace to `team-<team-name>`, according to the team deploying the application, e.g. `team-demo`.
