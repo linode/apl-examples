@@ -70,7 +70,7 @@ env:
   - name: NOTIFIER_RABBITMQ_PASSWORD
     valueFrom:
       secretKeyRef:
-        name: rabbitmq-example-cluster-default-user
+        name: example-rabbitmq-cluster-default-user
         key: password
 ```
 
