@@ -48,7 +48,7 @@ The app does not include a Dockerfile, but an image can be generated with Buildp
 3. Set a name, e.g. `rmq-example-app`.
 4. In the chart values, update the `image` and `env` section. Adjust `image.repository` with the value from the build.
    Also, update the `name` references in the `secretKeyRef` entries.
-   The format of the secret name is `rabbitmq-<name>-cluster-default-user`, where `<name>` is to be replaced with the
+   The format of the secret name is `<name>-rabbitmq-cluster-default-user`, where `<name>` is to be replaced with the
    cluster name you chose above. It should look like this:
 
 ```yaml
