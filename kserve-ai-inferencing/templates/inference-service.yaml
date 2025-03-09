@@ -1,14 +1,15 @@
 apiVersion: serving.kserve.io/v1beta1
-kind: inferenceService
+kind: InferenceService
 metadata:
   name: {{ include "inferenceService.fullname" . }}
-  labels: {{- include "inferenceService.labels" . | nindent 8 }}
+  labels: {{- include "inferenceService.labels" . | nindent 6 }}
     {{- with .Values.labels }}
     {{- toYaml . | nindent 6 }}
     {{- end }}
   annotations:
     {{- if .Values.metrics.enabled }}
     serving.kserve.io/enable-prometheus-scraping: "true"
+    {{- end }}
     {{- with .Values.annotations }}
     {{- toYaml . | nindent 6 }}
     {{- end }}
@@ -18,11 +19,11 @@ spec:
       modelFormat:
         name: huggingface
       {{- with .Values.args }}
-      args: {{ . | toYaml | nindent 12 }}
+      args: {{ . | toYaml | nindent 8 }}
       {{- end }}
       {{- with .Values.env }}
-      env: {{- toYaml . | nindent 12 }}
+      env: {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.resources }}
-      resources: {{- . | toYaml | nindent 12 }}
+      resources: {{- . | toYaml | nindent 8 }}
       {{- end }}
