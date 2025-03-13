@@ -5,7 +5,7 @@ labels:
 
 annotations: {}
 
-## Create a secret with the Hugging Face token and use it as a secretKeyRef:
+## Create a SealedSecret with the Hugging Face token and use it as a secretKeyRef:
 env:
   - name: HF_TOKEN
     valueFrom:

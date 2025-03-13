@@ -17,3 +17,6 @@ This example Helm chart can be used to create a Kserve `InferenceService` to dep
 - A Huggingface account
 - (optional) Access to the model to deploy
 - A Huggingface access toke with `write` access
+- A SealedSecret with the Hugging Face token (`HF_TOKEN`)
+- Kserve installed by a platform-admin
+- An LKE cluster with at least 3 RTX4000 Ada x1 Medium GPU plan
