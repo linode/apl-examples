@@ -1,4 +1,4 @@
-# Example app in Python using RabbitMQ
+# Python using RabbitMQ
 
 This app provides a minimal example of a chat app, sending messages to all clients that are currently connected.
 
@@ -17,17 +17,16 @@ instance. The RabbitMQ cluster takes care of exchanging the messages between tho
 
 ## Platform preparation
 
-The platform admin needs to activate `RabbitMQ` in the Platform Apps.
-Also Harbor is required with configured object storage.
+The platform admin needs to activate `RabbitMQ` and `Harbor` in the Platform Apps.
 
 ## Building the app
 
-The app does not include a Dockerfile, but an image can be generated with Buildpacks.
+The app does not include a `.Dockerfile`, but an image can be created using `Buildpacks`.
 
 1. In the app platform, select `Build`, then `Create Build`.
 2. Provide an image name, e.g. `rmq-example-app`.
 3. Select as Mode `Buildpacks`.
-4. Set the Repo URL to `https://github.com/linode/apl-example-app.git`.
+4. Set the Repo URL to `https://github.com/linode/apl-examples.git`.
 5. Set the path to `rabbitmq-python-example`.
 6. Confirm with `Submit`.
 7. Copy out the image repository for creating the workload in the following step.
