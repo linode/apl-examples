@@ -1,6 +1,6 @@
-# apl-example-app
+# Vote App
 
-This repo contains the source code to build the `vote`, `worker` and `results` images for deploying the the `APL Example App` - based on the [Example Voting App](https://github.com/dockersamples/example-voting-app) - using the provided quickstart Helm charts in the APL Catalog.
+This repo contains the source code to build the `vote`, `worker` and `results` images for deploying the the `Vote App` - based on the [Example Voting App](https://github.com/dockersamples/example-voting-app) - using the provided quickstart Helm charts in the Akamai App Platform Catalog.
 
 <img title="Voting App" alt="App diagram" src="Voting App.jpg">
 
@@ -10,15 +10,15 @@ This repo contains the source code to build the `vote`, `worker` and `results` i
 
 Use the [Build feature in Otomi](https://otomi.io/docs/get-started/labs/lab-6#build-the-blue-image) to build the images with `Docker` mode for the `result`,`vote` and `worker` components: 
 1. Set the build name (ex. `voting-app-vote`)
-2. Set the `Repo URL` to `https://github.com/redkubes/example-voting-app.git`
-3. Set the `path` to `./vote/Dockerfile` 
+2. Set the `Repo URL` to `https://github.com/linode/apl-examples.git`
+3. Set the `path` to `./vote-app/vote/Dockerfile` 
 4. Repeat step 1,2 and 3 for the other 2 components
-    - use `./result/Dockerfile` and `./worker/Dockerfile` paths respectively
+    - use `./vote-app/result/Dockerfile` and `./vote-app/worker/Dockerfile` paths respectively
 
 
 ## Create a Redis cluster and a PostgreSQL database
 
-Use the `postgresql` and the `redis` charts in the APL `Catalog` to create a Redis master-replica cluster and a PostgreSQL database. 
+Use the `postgresql` and the `redis` charts in the `Catalog` to create a Redis master-replica cluster and a PostgreSQL database. 
 - **Postgresql**:
   - Name: `<postgesql app name>` (E.g.`voting-app-psql`).
   - Click `Submit` (can use default values for this example)
@@ -106,7 +106,7 @@ Use the `k8s-deployment` chart to deploy the result app. Use the following value
 
 ## Register the services
 
-Register the `vote` and `result` services in APL and configure them for external exposure. 
+Register the `vote` and `result` services and configure them for external exposure. 
 
 ### Vote
 
