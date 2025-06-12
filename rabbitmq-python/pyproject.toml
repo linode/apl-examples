@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "rabbitmq-python-example"
+name = "rabbitmq-python"
 version = "0.1.0"
 description = ""
 authors = ["Matthias Erll <merll@akamai.com>"]
