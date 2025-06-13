@@ -4,17 +4,21 @@ This repository contains example code used for App Platform for LKE [Cloud Guide
 
 ## Contents
 
-## kserve-ai-inferencing
+## inferencing-service
 
-An example Helm chart to create a Kserve `inferenceService`.
+A Helm chart to create a Kserve `inferenceService`.
 
 ## open-webui
 
-An example Kverno `Policy` to disable Istio sidecar injection to be used in combination with the `open-webui` Helm chart.
+A Kverno `Policy` to disable Istio sidecar injection to be used in combination with the `open-webui` Helm chart.
 
 ## rabbitmq-python
 
 Source code for an example chat app, sending messages to all clients that are currently connected.
+
+## spinkube
+
+Helm charts for installing `spin-operator` prerequisites, a spin shim executor and a spin application.
 
 ## vote-app
 
