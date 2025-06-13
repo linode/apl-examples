@@ -3,6 +3,7 @@ name = "rabbitmq-python-example"
 version = "0.1.0"
 description = ""
 authors = ["Matthias Erll <merll@akamai.com>"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
