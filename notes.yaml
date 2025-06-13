@@ -1,0 +1,21 @@
+image:
+  repository: ghcr.io/spinkube/containerd-shim-spin/examples/spin-rust-hello
+  tag: v0.13.0
+
+
+values: | kubecon-api.yaml
+    fullnameOverride: ""
+    image:
+      repository: thansdemo.azurecr.io/kubecon-api
+      tag: 0.20.0
+    replicaCount: 0
+    env: []
+    commonLabels: {}
+    enableAutoscaling: false
+    runtimeConfig:
+      loadFromSecret: api-rtc
+    resources: {}
+    volumeMounts: []
+    volumes: []
+    livenessProbe: null
+    readinessProbe: {}  
