@@ -1,3 +1,0 @@
-## Prerequisites
-
-- `kwasm-operator` installed.

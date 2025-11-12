@@ -1,0 +1,8 @@
+apiVersion: v2
+appVersion: 1.0.3
+description: A Helm chart for NVIDIA NIM for LLMs
+kubeVersion: '>=v1.23.0-0'
+name: nim-llama-3-2-v2-1b-embed
+type: application
+version: 1.14.0
+icon: https://developers.google.com/static/profile/badges/playlists/nvidia-deploy-with-gen-ai/badge.svg
