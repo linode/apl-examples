@@ -9,8 +9,8 @@ env:
         optional: false
 
 args:
-  - --model_id=mistralai/Mistral-7B-Instruct-v0.3
-  - --model_name=mistral-7b-instruct-v0-3
+  - --model_id=intfloat/e5-mistral-7b-instruct
+  - --model_name=mistral-7b-instruct
   - --task=embed
 
 annotations: {}
