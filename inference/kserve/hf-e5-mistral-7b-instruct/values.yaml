@@ -1,0 +1,34 @@
+fullnameOverride: ""
+
+env:
+  - name: HF_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: hf-secret
+        key: HF_TOKEN
+        optional: false
+
+args:
+  - --model_id=intfloat/e5-mistral-7b-instruct
+  - --model_name=mistral-7b-instruct
+  - --task=embed
+
+annotations: {}
+
+labels: {}
+
+resources:
+  limits:
+    cpu: "12"
+    memory: 24Gi
+    nvidia.com/gpu: "1"
+  requests:
+    cpu: "8"
+    memory: 12Gi
+    nvidia.com/gpu: "1"
+
+metrics:
+  enabled: false
+  endpoints: []
+    # - port: http-usermetric
+    #   path: /metrics

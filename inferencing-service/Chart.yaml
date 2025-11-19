@@ -1,5 +1,0 @@
-apiVersion: v2
-name: kserve-ai-inferencing-service
-description: App Platform example for a Kserve inferencing service using the Hugging Face serving runtime
-version: 1.0.0
-icon: https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/meta-color.png
